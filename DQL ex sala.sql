@@ -306,5 +306,17 @@ On pr.idmarca = ma.idmarca
 ORDER BY pr.nomeproduto ;
 
 
+CREATE OR REPLACE VIEW visao_total AS
+SELECT co.idcompra ,cl.nomecliente,pr.nomeproduto, ma.nomemarca, lo.nomeloja,co.dtcompra,co.qtd,pr.preco,pr.preco* co.qtd AS total
+FROM compras AS co INNER JOIN cliente as cl
+ON co.idcliente= cl.idcliente
+INNER JOIN produto as pr
+ON pr.idproduto = co.idproduto
+INNER JOIN marca as ma
+ON ma.idmarca = pr.idmarca
+INNER JOIN  loja as lo
+ON lo.idloja = co.idloja;
+
+
 
 
